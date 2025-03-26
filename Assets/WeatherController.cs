@@ -1,17 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+public enum Weather{
+        SUNNY,
+        CLOUDY,
+        DRIZZLE,
+        RAINY
+}
 
 public class WeatherController : MonoBehaviour
 {
     Tenkoku.Core.TenkokuModule tenkokuModule;
     int prevDay;
-    public enum Weather{
-        SUNNY,
-        CLOUDY,
-        DRIZZLE,
-        RAINY
-    }
+    
     public Weather currentWeather;
     // Start is called before the first frame update
     void Start()
