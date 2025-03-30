@@ -12,6 +12,7 @@ public class WeatherController : MonoBehaviour
 {
     Tenkoku.Core.TenkokuModule tenkokuModule;
     int prevDay;
+    public int numDays = 0;
     
     public Weather currentWeather;
     // Start is called before the first frame update
@@ -26,6 +27,7 @@ public class WeatherController : MonoBehaviour
     void Update()
     {
         if(tenkokuModule.currentDay!=prevDay){
+            numDays += 1;
             int randomWeather = Random.Range(0,100);
             prevDay = tenkokuModule.currentDay;
             if(randomWeather<15){
@@ -46,7 +48,7 @@ public class WeatherController : MonoBehaviour
             }
             else if(randomWeather<60){
                 tenkokuModule.weather_RainAmt = 0.0f;
-                tenkokuModule.weather_OvercastAmt = 0.1f;
+                tenkokuModule.weather_OvercastAmt = 0.2f;
                 tenkokuModule.weather_WindAmt = 0.0f;
                 tenkokuModule.weather_lightning = 0.0f;
                 tenkokuModule.weather_cloudCumulusAmt = 0.9f;
