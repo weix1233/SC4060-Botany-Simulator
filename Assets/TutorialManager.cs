@@ -11,13 +11,13 @@ public class TutorialManager : MonoBehaviour
     // Button that the player clicks to advance the tutorial.
     public Button nextButton;
 
-    // A queue to store tutorial steps.
+    // A queue to store the tutorial steps.
     private Queue<TutorialStep> tutorialSteps = new Queue<TutorialStep>();
 
     void Start()
     {
         // Initialize tutorial steps.
-        // 'waitForEvent' is false here, meaning the player can click "Next" immediately.
+        // The boolean flag 'waitForEvent' is false here, meaning the player can click "Next" immediately.
         tutorialSteps.Enqueue(new TutorialStep("Welcome to the Plant Nurturing Simulator! Your goal is to nurture a plant through proper care.", false));
         tutorialSteps.Enqueue(new TutorialStep("Step 1: Pick up the seed bag to plant your seed. Move your character to the seed bag.", false));
         tutorialSteps.Enqueue(new TutorialStep("Step 2: When you approach the pot, the seed will be planted automatically.", false));
@@ -43,12 +43,12 @@ public class TutorialManager : MonoBehaviour
             tutorialText.text = step.message;
             tutorialPanel.SetActive(true);
 
-            // If this step should wait for an in-game event, disable the Next button.
+            // If this step is waiting for an in-game event, disable the Next button.
             nextButton.gameObject.SetActive(!step.waitForEvent);
         }
         else
         {
-            // End of tutorial: hide the panel.
+            // No more steps: hide the tutorial panel.
             tutorialPanel.SetActive(false);
         }
     }
@@ -70,8 +70,8 @@ public class TutorialManager : MonoBehaviour
 // Class to represent a single tutorial step.
 public class TutorialStep
 {
-    public string message;       // The tutorial message.
-    public bool waitForEvent;    // If true, waits for an in-game event before allowing progression.
+    public string message;         // The tutorial message.
+    public bool waitForEvent;      // If true, this step waits for an in-game event before allowing progression.
 
     public TutorialStep(string message, bool waitForEvent)
     {
