@@ -29,7 +29,7 @@ public class MenuController : MonoBehaviour
             noSavedGameDialog.SetActive(true);
         }
     }
-
+ 
     public void ExitButton()
     {
         Application.Quit();
