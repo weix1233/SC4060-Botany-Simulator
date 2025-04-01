@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class LightSwitch : MonoBehaviour
@@ -12,28 +11,32 @@ public class LightSwitch : MonoBehaviour
     private bool switchState = false;
     private Material material;
 
-    // Start is called before the first frame update
-    void Start(){
+    void Start()
+    {
         gameController = GameObject.Find("Plant");
         material = lamp.GetComponent<Renderer>().material;
     }
 
-    // Update is called once per frame
     public void switchUsed()
     {
-        if(switchState==false){
+        if (switchState == false)
+        {
             switchState = true;
             material.EnableKeyword("_EMISSION");
             pointLight.SetActive(true);
             spotLight.SetActive(true);
             gameController.GetComponent<GameController>().lamp();
+            // Advance tutorial after toggling the lamp (Step 5)
+            GameObject.Find("TutorialManager").GetComponent<TutorialManager>().AdvanceTutorial();
         }
-        else{
+        else
+        {
             switchState = false;
             material.DisableKeyword("_EMISSION");
             pointLight.SetActive(false);
             spotLight.SetActive(false);
             gameController.GetComponent<GameController>().lamp();
+            // Optionally, if turning off the lamp is also an event, you can call AdvanceTutorial() here.
         }
     }
 }
