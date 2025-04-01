@@ -17,19 +17,19 @@ public class StateManager : MonoBehaviour
         fertiliserAState = GameObject.Find("Plant").GetComponent<GameController>().fertiliserAState;
         fertiliserBState = GameObject.Find("Plant").GetComponent<GameController>().fertiliserBState;
 
-        if (sunlightState == state.HEALTHY)
+        if(sunlightState == state.HEALTHY)
             sun.GetComponent<Image>().material = healthy;
         else
             sun.GetComponent<Image>().material = unhealthy;
-        if (waterState == state.HEALTHY)
+        if(waterState == state.HEALTHY)
             water.GetComponent<Image>().material = healthy;
         else
             water.GetComponent<Image>().material = unhealthy;
-        if (fertiliserAState == state.HEALTHY)
+        if(fertiliserAState == state.HEALTHY)
             fertA.GetComponent<Image>().material = healthy;
         else
             fertA.GetComponent<Image>().material = unhealthy;
-        if (fertiliserBState == state.HEALTHY)
+        if(fertiliserBState == state.HEALTHY)
             fertB.GetComponent<Image>().material = healthy;
         else
             fertB.GetComponent<Image>().material = unhealthy;

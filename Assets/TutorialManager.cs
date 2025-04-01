@@ -17,14 +17,14 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         // Initialize tutorial steps.
-        // 'waitForEvent' is true for steps that require an in-game action before continuing.
+        // 'waitForEvent' is false here, meaning the player can click "Next" immediately.
         tutorialSteps.Enqueue(new TutorialStep("Welcome to the Plant Nurturing Simulator! Your goal is to nurture a plant through proper care.", false));
-        tutorialSteps.Enqueue(new TutorialStep("Step 1: Pick up the seed bag to plant your seed. Move your character to the seed bag.", true));
-        tutorialSteps.Enqueue(new TutorialStep("Step 2: When you approach the pot, the seed will be planted automatically.", true));
-        tutorialSteps.Enqueue(new TutorialStep("Step 3: Fill the watering can by going to the well.", true));
-        tutorialSteps.Enqueue(new TutorialStep("Step 4: Bring the filled watering can to the plant to water it. Watch as the soil texture changes.", true));
-        tutorialSteps.Enqueue(new TutorialStep("Step 5: Use the lamp switch to toggle the LED lamp on or off, adjusting the light as needed.", true));
-        tutorialSteps.Enqueue(new TutorialStep("Step 6: Apply fertiliser to boost plant growth by interacting with the fertiliser bags.", true));
+        tutorialSteps.Enqueue(new TutorialStep("Step 1: Pick up the seed bag to plant your seed. Move your character to the seed bag.", false));
+        tutorialSteps.Enqueue(new TutorialStep("Step 2: When you approach the pot, the seed will be planted automatically.", false));
+        tutorialSteps.Enqueue(new TutorialStep("Step 3: Fill the watering can by going to the well.", false));
+        tutorialSteps.Enqueue(new TutorialStep("Step 4: Bring the filled watering can to the plant to water it. Watch as the soil texture changes.", false));
+        tutorialSteps.Enqueue(new TutorialStep("Step 5: Use the lamp switch to toggle the LED lamp on or off, adjusting the light as needed.", false));
+        tutorialSteps.Enqueue(new TutorialStep("Step 6: Apply fertiliser to boost plant growth by interacting with the fertiliser bags.", false));
         tutorialSteps.Enqueue(new TutorialStep("Great job! You have learned the basics. Now continue nurturing your plant and watch it grow!", false));
 
         // Set up the button listener.
@@ -43,12 +43,12 @@ public class TutorialManager : MonoBehaviour
             tutorialText.text = step.message;
             tutorialPanel.SetActive(true);
 
-            // If this step waits for an in-game event, disable the Next button.
+            // If this step should wait for an in-game event, disable the Next button.
             nextButton.gameObject.SetActive(!step.waitForEvent);
         }
         else
         {
-            // No more steps; hide the tutorial panel.
+            // End of tutorial: hide the panel.
             tutorialPanel.SetActive(false);
         }
     }
@@ -59,7 +59,8 @@ public class TutorialManager : MonoBehaviour
         ShowNextStep();
     }
 
-    // Call this from other scripts to enable the Next button when an event is completed.
+    // This method can be called from other scripts to advance the tutorial automatically
+    // when a required in-game action is completed.
     public void AdvanceTutorial()
     {
         nextButton.gameObject.SetActive(true);
@@ -70,7 +71,7 @@ public class TutorialManager : MonoBehaviour
 public class TutorialStep
 {
     public string message;       // The tutorial message.
-    public bool waitForEvent;    // If true, this step waits for an in-game event.
+    public bool waitForEvent;    // If true, waits for an in-game event before allowing progression.
 
     public TutorialStep(string message, bool waitForEvent)
     {
