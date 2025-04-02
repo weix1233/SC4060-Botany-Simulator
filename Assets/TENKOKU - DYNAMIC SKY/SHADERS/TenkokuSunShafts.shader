@@ -97,9 +97,9 @@ Shader "Hidden/TenkokuSunShafts" {
 	
 	half4 frag_depth (v2f i) : SV_Target {
 		#if UNITY_UV_STARTS_AT_TOP
-		float depthSample = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv1.xy);
+		float depthSample = tex2D(_CameraDepthTexture, i.uv1.xy);
 		#else
-		float depthSample = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture, i.uv.xy);		
+		float depthSample = tex2D(_CameraDepthTexture, i.uv.xy);		
 		#endif
 		
 		half4 tex = tex2D (_MainTex, i.uv.xy);

@@ -185,7 +185,7 @@ sampler2D _Tenkoku_SkyBox;
 
 		// Reconstruct world space position & direction
 		// towards this screen pixel.
-		float rawDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture,i.uv_depth);
+		float rawDepth = tex2D(_CameraDepthTexture,i.uv_depth);
 		float dpth = Linear01Depth(rawDepth);
 		float4 wsDir = dpth * i.interpolatedRay;
 
@@ -221,7 +221,7 @@ sampler2D _Tenkoku_SkyBox;
 		float2 uvx = i.uv_depth;
 
 		//Recalculate Depth with Heat Distortion
-		rawDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture,i.uv_depth);
+		rawDepth = tex2D(_CameraDepthTexture,i.uv_depth);
 		dpth = Linear01Depth(rawDepth);
 		wsDir = dpth * i.interpolatedRay;
 
