@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class save : MonoBehaviour
 {
-    public GameObject gamecontrol;
+    private GameObject gamecontrol;
     // Start is called before the first frame update
     void Start()
     {
@@ -12,7 +12,7 @@ public class save : MonoBehaviour
     }
 
     // Update is called once per frame
-    void saveGame()
+    public void saveGame()
     {
         PlayerPrefs.SetFloat("Water", gamecontrol.GetComponent<GameController>().water);
         PlayerPrefs.SetFloat("Sunlight", gamecontrol.GetComponent<GameController>().sunlight);
