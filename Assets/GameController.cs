@@ -143,7 +143,7 @@ public class GameController : MonoBehaviour
     }
 
     public void stateTransition(){
-        pot = GameObject.FindGameObjectWithTag("Pot");
+        pot = GameObject.FindGameObjectWithTag("Plant");
 
         if(pot.name == "seed"){
             if(water > 0.3) daysHealthy+=1;

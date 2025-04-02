@@ -18,7 +18,8 @@ public class save : MonoBehaviour
         PlayerPrefs.SetFloat("Sunlight", gamecontrol.GetComponent<GameController>().sunlight);
         PlayerPrefs.SetFloat("FertiliserA", gamecontrol.GetComponent<GameController>().fertiliserA);
         PlayerPrefs.SetFloat("FertiliserB", gamecontrol.GetComponent<GameController>().fertiliserB);
-        PlayerPrefs.SetString("PlantState", GameObject.FindGameObjectWithTag("Pot").name);
+        if(GameObject.FindGameObjectWithTag("Plant")!= null) PlayerPrefs.SetString("PlantState", GameObject.FindGameObjectWithTag("Plant").name);
+        else PlayerPrefs.SetString("PlantState", "plantPot");
         PlayerPrefs.SetInt("TotalDays", gamecontrol.GetComponent<GameController>().totalDays);
         PlayerPrefs.SetString("CurrentWeather", gamecontrol.GetComponent<GameController>().weatherString);
         PlayerPrefs.SetInt("daysHealthy", gamecontrol.GetComponent<GameController>().daysHealthy);
