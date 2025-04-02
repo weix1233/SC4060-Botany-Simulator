@@ -20,12 +20,13 @@ public class GameController : MonoBehaviour
     Weather currentWeather, prevWeather;
     public String weatherString;
     private GameObject pot;
+    public GameObject CompletedImage, GameOverImage;
     public bool lampState = false;
     public int daysHealthy = 0, daysUnhealthy = 0, daysRequired = 0, prevDay;
     public int totalDays = 0;
     public GameObject[] plantStates;
     public state waterState = state.HEALTHY, sunlightState = state.HEALTHY, fertiliserAState = state.HEALTHY, fertiliserBState = state.HEALTHY;
-     
+    
 
     void Start()
     {
@@ -91,14 +92,13 @@ public class GameController : MonoBehaviour
         stateCheck();
     }
 
-    public void gameOver(){
     public void gameOver(){ 
         Debug.Log("GameOver");
-        CompletedImage.gameObject.SetActive(true);
+        GameOverImage.SetActive(true);
     }
     public void gameWon(){
         Debug.Log("GameWon");
-        GameOverImage.gameObject.SetActive(true);
+        CompletedImage.SetActive(true);
 
     }   
     public void watered(){

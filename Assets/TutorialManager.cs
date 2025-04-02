@@ -24,8 +24,8 @@ public class TutorialManager : MonoBehaviour
         tutorialSteps.Enqueue(new TutorialStep("Step 2: When you approach the pot, the seed will be planted automatically.", false));
         tutorialSteps.Enqueue(new TutorialStep("Step 3: Fill the watering can by going to the well.", false));
         tutorialSteps.Enqueue(new TutorialStep("Step 4: Bring the filled watering can to the plant to water it. Watch as the soil texture changes.", false));
-        tutorialSteps.Enqueue(new TutorialStep("Step 5: Use the lamp switch to toggle the LED lamp on or off, adjusting the light as needed.", false));
-        tutorialSteps.Enqueue(new TutorialStep("Step 6: Apply fertiliser to boost plant growth by interacting with the fertiliser bags.", false));
+        tutorialSteps.Enqueue(new TutorialStep("Step 5: Use the lamp switch to toggle the LED lamp on or off, adjusting the light as needed. ", false));
+        tutorialSteps.Enqueue(new TutorialStep("Step 6: Apply fertiliser to boost plant growth by interacting with the fertiliser bags. Fertiliser A(the green bag), should be used in the early stages of plant growth while Fertiliser B(the orange bag), should be used in the later stages of plant growth.", false));
         tutorialSteps.Enqueue(new TutorialStep("Great job! You have learned the basics. Now continue nurturing your plant and watch it grow!", false));
 
         // Set up the button listener.

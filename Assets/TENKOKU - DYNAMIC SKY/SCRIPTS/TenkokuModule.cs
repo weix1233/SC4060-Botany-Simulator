@@ -20,7 +20,7 @@ namespace Tenkoku.Core
 
 	//PUBLIC VARIABLES
 	public string tenkokuVersionNumber = "";
-
+	public float timeMultiplier=1.0f;
 	public bool useAutoFX = true;
 	public float systemTime = 1f;
 	public bool enableAutoAdvance = true;
@@ -1076,7 +1076,7 @@ bool totalEclipse = false;
 
 
 		//CACHE SYSTEM VARIABLES (for performance)
-		_deltaTime = Time.deltaTime;
+		_deltaTime = Time.deltaTime*timeMultiplier;
 
 		//Set base transition boolean flag
 		isDoingTransition = false;
