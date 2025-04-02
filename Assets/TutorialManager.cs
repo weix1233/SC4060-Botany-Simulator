@@ -10,6 +10,7 @@ public class TutorialManager : MonoBehaviour
     public Text tutorialText;
     // Button that the player clicks to advance the tutorial.
     public Button nextButton;
+    public GameObject savePanel;
 
     // A queue to store the tutorial steps.
     private Queue<TutorialStep> tutorialSteps = new Queue<TutorialStep>();
@@ -50,6 +51,7 @@ public class TutorialManager : MonoBehaviour
         {
             // No more steps: hide the tutorial panel.
             tutorialPanel.SetActive(false);
+            savePanel.SetActive(true);
         }
     }
 

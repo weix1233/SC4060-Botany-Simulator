@@ -18,9 +18,10 @@ public class GameController : MonoBehaviour
     public float fertiliserA = 0.0f;
     public float fertiliserB = 0.0f;
     Weather currentWeather, prevWeather;
+    public String weatherString;
     private GameObject pot;
-    private bool lampState = false;
-    private int daysHealthy = 0, daysUnhealthy = 0, daysRequired = 0, prevDay;
+    public bool lampState = false;
+    public int daysHealthy = 0, daysUnhealthy = 0, daysRequired = 0, prevDay;
     public int totalDays = 0;
     public GameObject[] plantStates;
     public state waterState = state.HEALTHY, sunlightState = state.HEALTHY, fertiliserAState = state.HEALTHY, fertiliserBState = state.HEALTHY;
@@ -30,11 +31,31 @@ public class GameController : MonoBehaviour
         currentWeather = GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().currentWeather;
         prevDay = GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().numDays;
         prevWeather = currentWeather;
+        if(PlayerPrefs.HasKey("Water")){
+            GameObject.FindGameObjectWithTag("Pot").SetActive(false);
+            water = PlayerPrefs.GetFloat("Water");
+            sunlight = PlayerPrefs.GetFloat("Sunlight");
+            fertiliserA = PlayerPrefs.GetFloat("FertiliserA");
+            fertiliserB = PlayerPrefs.GetFloat("FertiliserB");
+            totalDays = PlayerPrefs.GetInt("TotalDays");
+            weatherString = PlayerPrefs.GetString("CurrentWeather");
+            daysHealthy = PlayerPrefs.GetInt("daysHealthy");
+            daysUnhealthy = PlayerPrefs.GetInt("daysUnhealthy");
+            daysRequired = PlayerPrefs.GetInt("daysRequired");
+            lampState = PlayerPrefs.GetInt("lampState")==1;
+            foreach (GameObject g in plantStates){
+                if(g.name==PlayerPrefs.GetString("PlantState")){
+                    g.SetActive(true);
+                    break;
+                }
+            }
+        }
     }
 
     void Update()
     {
         currentWeather = GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().currentWeather;
+        weatherString = currentWeather.ToString();
         if(prevDay!=GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().numDays){
             if(prevWeather!=Weather.SUNNY & lampState==true) sunlight+=0.2f;
             else if(prevWeather==Weather.SUNNY & lampState==true) sunlight+=0.1f;

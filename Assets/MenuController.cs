@@ -19,10 +19,9 @@ public class MenuController : MonoBehaviour
 
     public void LoadGameDialogYes()
     {
-        if (PlayerPrefs.HasKey("SavedLevel"))
+        if (PlayerPrefs.HasKey("Water"))
         {
-            levelToLoad = PlayerPrefs.GetString("SavedLevel");
-            SceneManager.LoadScene(levelToLoad);
+            SceneManager.LoadScene(_newGameLevel);
         }
         else
         {
