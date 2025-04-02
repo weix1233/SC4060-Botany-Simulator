@@ -50,12 +50,12 @@ Pass
 
 		//DX11
 		#if SHADER_API_D3D11
-			float rawDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture,i.uv_depth);
+			float rawDepth = tex2D(_CameraDepthTexture,i.uv_depth);
 			float dpth = LinearEyeDepth(rawDepth);
 			retValue.a = dpth/500;
 		#else
 			//DX9
-			float rawDepth = SAMPLE_DEPTH_TEXTURE(_CameraDepthTexture,i.uv_depth);
+			float rawDepth = tex2D(_CameraDepthTexture,i.uv_depth);
 			float dpth = Linear01Depth(rawDepth);
 			retValue.a = dpth;
 		#endif

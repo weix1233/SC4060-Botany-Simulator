@@ -8,7 +8,9 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Branches001
-  m_Shader: {fileID: 4800000, guid: eee2400ecc6f042448341f68f711a01e, type: 3}
+  m_Shader: {fileID: 4800000, guid: 0cfef65042c2e4941b0639ecee9b9f7f, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords:
   - TVE_ALPHA_CLIP
@@ -23,6 +25,7 @@ Material:
   - TransparentBackfaceDebugDisplay
   - TransparentDepthPrepass
   - TransparentDepthPostpass
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -38,11 +41,31 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DetailColorMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailMask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _DetailMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailSecondaryColorMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailSecondaryMaskMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailSecondaryNormalMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -127,6 +150,8 @@ Material:
     - _CATEGORY_ALPHACLIPPING: 1
     - _CATEGORY_COLOR: 1
     - _CATEGORY_COLORSHIFT: 0
+    - _CATEGORY_DETAILMAPPING: 0
+    - _CATEGORY_DETAILMAPPINGSECONDARY: 0
     - _CATEGORY_SURFACEINPUTS: 1
     - _CATEGORY_TRANSLUCENCY: 0
     - _CATEGORY_TRANSLUCENCYASE: 0
@@ -158,19 +183,61 @@ Material:
     - _Cull: 0
     - _Cutoff: 0.5
     - _DetailAlphaMode: 1
+    - _DetailBlendEnableAltitudeMask: 0
+    - _DetailBlendHeight: 0.5
+    - _DetailBlendHeightMax: 1
+    - _DetailBlendHeightMin: -0.5
     - _DetailBlendMaxValue: 0.6
     - _DetailBlendMinValue: 0.4
     - _DetailBlendMode: 1
+    - _DetailBlendSmooth: 0.5
+    - _DetailBlendSource: 1
+    - _DetailBlendStrength: 1
+    - _DetailBlendVertexColor: 0
+    - _DetailBrightness: 1
+    - _DetailEnable: 0
+    - _DetailMaskBlendFalloff: 0.999
+    - _DetailMaskBlendHardness: 1
+    - _DetailMaskBlendStrength: 1
+    - _DetailMaskEnable: 0
+    - _DetailMaskIsInverted: 0
     - _DetailMaskMaxValue: 1
     - _DetailMaskMinValue: 0
     - _DetailMaskMode: 0
+    - _DetailMaskUVRotation: 0
     - _DetailMeshMaxValue: 1
     - _DetailMeshMinValue: 0
     - _DetailMeshMode: 0
     - _DetailMode: 0
     - _DetailNormalMapScale: 1
+    - _DetailNormalStrength: 1
     - _DetailNormalValue: 1
+    - _DetailSaturation: 0
+    - _DetailSecondaryBlendEnableAltitudeMask: 0
+    - _DetailSecondaryBlendHeight: 0.5
+    - _DetailSecondaryBlendHeightMax: 1
+    - _DetailSecondaryBlendHeightMin: -0.5
+    - _DetailSecondaryBlendSmooth: 0.5
+    - _DetailSecondaryBlendSource: 1
+    - _DetailSecondaryBlendStrength: 1
+    - _DetailSecondaryBlendVertexColor: 0
+    - _DetailSecondaryBlendWeightLayer1: 0.5
+    - _DetailSecondaryBlendWeightLayer2: 0.5
+    - _DetailSecondaryBrightness: 1
+    - _DetailSecondaryEnable: 0
+    - _DetailSecondaryMaskBlendFalloff: 0.5
+    - _DetailSecondaryMaskBlendHardness: 1.35
+    - _DetailSecondaryMaskBlendStrength: 0.5
+    - _DetailSecondaryMaskEnable: 0
+    - _DetailSecondaryMaskIsInverted: 0
+    - _DetailSecondaryMaskUVRotation: 0
+    - _DetailSecondaryNormalStrength: 1
+    - _DetailSecondarySaturation: 0
+    - _DetailSecondaryUVMode: 0
+    - _DetailSecondaryUVRotation: 0
     - _DetailSnowMode: 0
+    - _DetailUVMode: 0
+    - _DetailUVRotation: 0
     - _DetailValue: 1
     - _DoubleSidedNormalMode: 1
     - _DstBlend: 0
@@ -254,6 +321,8 @@ Material:
     - _SPACE_ALPHACLIP: 0
     - _SPACE_COLOR: 0
     - _SPACE_COLORSHIFT: 0
+    - _SPACE_DETAIL: 0
+    - _SPACE_DETAILSECONDARY: 0
     - _SPACE_SURFACEINPUTS: 0
     - _SPACE_TRANSLUCENCY: 0
     - _SPACE_TRANSLUCENCYASE: 0
@@ -339,8 +408,14 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DetailBlendRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _DetailColor: {r: 1, g: 1, b: 1, a: 0}
     - _DetailMaskRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _DetailMaskUVs: {r: 1, g: 1, b: 0, a: 0}
     - _DetailMeshRemap: {r: 0, g: 0, b: 0, a: 0}
+    - _DetailSecondaryColor: {r: 1, g: 1, b: 1, a: 0}
+    - _DetailSecondaryMaskUVs: {r: 1, g: 1, b: 0, a: 0}
+    - _DetailSecondaryUVs: {r: 1, g: 1, b: 0, a: 0}
+    - _DetailUVs: {r: 1, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissiveTexRemap: {r: 0, g: 0, b: 0, a: 0}
