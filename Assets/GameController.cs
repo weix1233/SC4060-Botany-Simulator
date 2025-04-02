@@ -26,6 +26,7 @@ public class GameController : MonoBehaviour
     public GameObject[] plantStates;
     public state waterState = state.HEALTHY, sunlightState = state.HEALTHY, fertiliserAState = state.HEALTHY, fertiliserBState = state.HEALTHY;
      
+
     void Start()
     {
         currentWeather = GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().currentWeather;
@@ -91,11 +92,15 @@ public class GameController : MonoBehaviour
     }
 
     public void gameOver(){
+    public void gameOver(){ 
         Debug.Log("GameOver");
+        CompletedImage.gameObject.SetActive(true);
     }
     public void gameWon(){
         Debug.Log("GameWon");
-    }
+        GameOverImage.gameObject.SetActive(true);
+
+    }   
     public void watered(){
         water += 0.1f;
         if(water>1.0f) water = 1.0f;

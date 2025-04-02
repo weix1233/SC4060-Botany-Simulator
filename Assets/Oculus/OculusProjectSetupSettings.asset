@@ -15,7 +15,9 @@ MonoBehaviour:
   boolProperties:
     keys:
     - OVRProjectSetup.OVRProjectSetup.OVRConfigurationTask.9fab03a73021ab9c06f6eb1c28801ed6.Ignored.Android
-    values: 01
+    - OVRProjectSetup.OVRProjectSetup.OVRConfigurationTask.db3015e9c6512f876f805e2f980c23f5.Ignored.Metro
+    - OVRProjectSetup.OVRProjectSetup.OVRConfigurationTask.9fab03a73021ab9c06f6eb1c28801ed6.Ignored.Metro
+    values: 010101
   intProperties:
     keys: []
     values: 
