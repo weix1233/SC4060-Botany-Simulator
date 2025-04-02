@@ -54,9 +54,9 @@ public class GameController : MonoBehaviour
             else if(fertiliserA>1) fertiliserA = 1.0f;
             if(fertiliserB<0) fertiliserB=0.0f;
             else if(fertiliserB>1) fertiliserB = 1.0f;
-            stateCheck();
             stateTransition();
         }
+        stateCheck();
     }
 
     public void gameOver(){
