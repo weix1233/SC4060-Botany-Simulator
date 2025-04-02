@@ -18,9 +18,10 @@ public class GameController : MonoBehaviour
     public float fertiliserA = 0.0f;
     public float fertiliserB = 0.0f;
     Weather currentWeather, prevWeather;
+    public String weatherString;
     private GameObject pot;
-    private bool lampState = false;
-    private int daysHealthy = 0, daysUnhealthy = 0, daysRequired = 0, prevDay;
+    public bool lampState = false;
+    public int daysHealthy = 0, daysUnhealthy = 0, daysRequired = 0, prevDay;
     public int totalDays = 0;
     public GameObject[] plantStates;
     public state waterState = state.HEALTHY, sunlightState = state.HEALTHY, fertiliserAState = state.HEALTHY, fertiliserBState = state.HEALTHY;
@@ -30,11 +31,41 @@ public class GameController : MonoBehaviour
         currentWeather = GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().currentWeather;
         prevDay = GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().numDays;
         prevWeather = currentWeather;
+        if(PlayerPrefs.HasKey("Water")){
+            GameObject.FindGameObjectWithTag("Pot").SetActive(false);
+            water = PlayerPrefs.GetFloat("Water");
+            sunlight = PlayerPrefs.GetFloat("Sunlight");
+            fertiliserA = PlayerPrefs.GetFloat("FertiliserA");
+            fertiliserB = PlayerPrefs.GetFloat("FertiliserB");
+            totalDays = PlayerPrefs.GetInt("TotalDays");
+            daysHealthy = PlayerPrefs.GetInt("daysHealthy");
+            daysUnhealthy = PlayerPrefs.GetInt("daysUnhealthy");
+            daysRequired = PlayerPrefs.GetInt("daysRequired");
+
+            lampState = PlayerPrefs.GetInt("lampState")==1;
+            if(lampState){
+                GameObject.Find("PushButton").GetComponent<LightSwitch>().switchUsed();
+            }
+
+            foreach (GameObject g in plantStates){
+                if(g.name==PlayerPrefs.GetString("PlantState")){
+                    g.SetActive(true);
+                    if(g.name!="plantPot"){
+                        GameObject.Find("Seed Bag").SetActive(false);
+                    }
+                    break;
+                }
+            }
+            weatherString = PlayerPrefs.GetString("CurrentWeather");
+            GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().currentWeather = (Weather)Enum.Parse(typeof(Weather), weatherString, true);
+            GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().updateWeather();
+        }
     }
 
     void Update()
     {
         currentWeather = GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().currentWeather;
+        weatherString = currentWeather.ToString();
         if(prevDay!=GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().numDays){
             if(prevWeather!=Weather.SUNNY & lampState==true) sunlight+=0.2f;
             else if(prevWeather==Weather.SUNNY & lampState==true) sunlight+=0.1f;
@@ -54,9 +85,9 @@ public class GameController : MonoBehaviour
             else if(fertiliserA>1) fertiliserA = 1.0f;
             if(fertiliserB<0) fertiliserB=0.0f;
             else if(fertiliserB>1) fertiliserB = 1.0f;
-            stateCheck();
             stateTransition();
         }
+        stateCheck();
     }
 
     public void gameOver(){
@@ -73,11 +104,13 @@ public class GameController : MonoBehaviour
         water+= 0.1f;
         if(water>1.0f) water = 1.0f;
         sunlight -= 0.2f;
+        if(sunlight<0) sunlight = 0.0f;
     }
     public void rained(){
         water+= 0.2f;
         if(water>1.0f) water = 1.0f;
         sunlight -= 0.2f;
+        if(sunlight<0) sunlight = 0.0f;
     }
     public void lamp(){
         if(lampState==true) lampState = false;
@@ -85,17 +118,20 @@ public class GameController : MonoBehaviour
     }
     public void cloudy(){
         sunlight -= 0.1f;
+        if(sunlight<0) sunlight = 0.0f;
     }
     public void fertiliserAAdded(){
         fertiliserA += 0.5f;
+        if(fertiliserA>1.0f) fertiliserA=1.0f;
     }
     public void fertiliserBAdded(){
         fertiliserB += 0.5f;
+        if(fertiliserB>1.0f) fertiliserB=1.0f;
     }
 
     public void stateCheck(){
         if(water<0.5) waterState = state.INSUFFICIENT;
-        else if(water>=0.9) waterState = state.EXCESSIVE;
+        else if(water>=0.8) waterState = state.EXCESSIVE;
         else waterState = state.HEALTHY;
         if(sunlight<=0.3) sunlightState = state.INSUFFICIENT;
         else if(sunlight>=0.8) sunlightState = state.EXCESSIVE;
@@ -107,7 +143,7 @@ public class GameController : MonoBehaviour
     }
 
     public void stateTransition(){
-        pot = GameObject.FindGameObjectWithTag("Pot");
+        pot = GameObject.FindGameObjectWithTag("Plant");
 
         if(pot.name == "seed"){
             if(water > 0.3) daysHealthy+=1;
