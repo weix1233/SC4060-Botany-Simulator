@@ -104,11 +104,13 @@ public class GameController : MonoBehaviour
         water+= 0.1f;
         if(water>1.0f) water = 1.0f;
         sunlight -= 0.2f;
+        if(sunlight<0) sunlight = 0.0f;
     }
     public void rained(){
         water+= 0.2f;
         if(water>1.0f) water = 1.0f;
         sunlight -= 0.2f;
+        if(sunlight<0) sunlight = 0.0f;
     }
     public void lamp(){
         if(lampState==true) lampState = false;
@@ -116,17 +118,20 @@ public class GameController : MonoBehaviour
     }
     public void cloudy(){
         sunlight -= 0.1f;
+        if(sunlight<0) sunlight = 0.0f;
     }
     public void fertiliserAAdded(){
         fertiliserA += 0.5f;
+        if(fertiliserA>1.0f) fertiliserA=1.0f;
     }
     public void fertiliserBAdded(){
         fertiliserB += 0.5f;
+        if(fertiliserB>1.0f) fertiliserB=1.0f;
     }
 
     public void stateCheck(){
         if(water<0.5) waterState = state.INSUFFICIENT;
-        else if(water>=0.9) waterState = state.EXCESSIVE;
+        else if(water>=0.8) waterState = state.EXCESSIVE;
         else waterState = state.HEALTHY;
         if(sunlight<=0.3) sunlightState = state.INSUFFICIENT;
         else if(sunlight>=0.8) sunlightState = state.EXCESSIVE;
