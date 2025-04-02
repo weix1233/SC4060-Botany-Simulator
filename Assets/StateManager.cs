@@ -9,7 +9,7 @@ public class StateManager : MonoBehaviour
     public Material healthy, unhealthy;
     // Start is called before the first frame update
     private state waterState, sunlightState, fertiliserAState, fertiliserBState;
-    public GameObject water, sun, fertA, fertB;
+    public GameObject water, sun, fertA, fertB, dayNo;
 
     // Update is called once per frame
     void Update()
@@ -32,5 +32,7 @@ public class StateManager : MonoBehaviour
         sun.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = sunlightState.ToString();
         fertA.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = fertiliserAState.ToString();
         fertB.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = fertiliserBState.ToString();
+
+        dayNo.GetComponent<TextMeshProUGUI>().text = "Day "+GameObject.Find("Plant").GetComponent<GameController>().totalDays.ToString();
     }
 }
