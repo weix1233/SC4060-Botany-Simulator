@@ -23,6 +23,36 @@ public class WeatherController : MonoBehaviour
         currentWeather = Weather.SUNNY;
     }
 
+    public void updateWeather(){
+        if(currentWeather==Weather.RAINY){
+            tenkokuModule.weather_RainAmt = 1.0f;
+            tenkokuModule.weather_OvercastAmt = 0.2f;
+            tenkokuModule.weather_WindAmt = 0.5f;
+            tenkokuModule.weather_lightning = 0.4f;
+            tenkokuModule.weather_cloudCumulusAmt = 0.0f;
+        }
+        else if(currentWeather==Weather.DRIZZLE){
+            tenkokuModule.weather_RainAmt = 0.3f;
+            tenkokuModule.weather_OvercastAmt = 0.15f;
+            tenkokuModule.weather_WindAmt = 0.15f;
+            tenkokuModule.weather_lightning = 0.1f;
+            tenkokuModule.weather_cloudCumulusAmt = 0.0f;
+        }
+        else if(currentWeather==Weather.CLOUDY){
+            tenkokuModule.weather_RainAmt = 0.0f;
+            tenkokuModule.weather_OvercastAmt = 0.2f;
+            tenkokuModule.weather_WindAmt = 0.0f;
+            tenkokuModule.weather_lightning = 0.0f;
+            tenkokuModule.weather_cloudCumulusAmt = 0.9f;
+        }
+        else{
+            tenkokuModule.weather_RainAmt = 0.0f;
+            tenkokuModule.weather_OvercastAmt = 0.1f;
+            tenkokuModule.weather_WindAmt = 0.0f;
+            tenkokuModule.weather_lightning = 0.0f;
+            tenkokuModule.weather_cloudCumulusAmt = 0.0f;
+        }
+    }
     // Update is called once per frame
     void Update()
     {

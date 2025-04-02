@@ -38,17 +38,27 @@ public class GameController : MonoBehaviour
             fertiliserA = PlayerPrefs.GetFloat("FertiliserA");
             fertiliserB = PlayerPrefs.GetFloat("FertiliserB");
             totalDays = PlayerPrefs.GetInt("TotalDays");
-            weatherString = PlayerPrefs.GetString("CurrentWeather");
             daysHealthy = PlayerPrefs.GetInt("daysHealthy");
             daysUnhealthy = PlayerPrefs.GetInt("daysUnhealthy");
             daysRequired = PlayerPrefs.GetInt("daysRequired");
+
             lampState = PlayerPrefs.GetInt("lampState")==1;
+            if(lampState){
+                GameObject.Find("PushButton").GetComponent<LightSwitch>().switchUsed();
+            }
+
             foreach (GameObject g in plantStates){
                 if(g.name==PlayerPrefs.GetString("PlantState")){
                     g.SetActive(true);
+                    if(g.name!="plantPot"){
+                        GameObject.Find("Seed Bag").SetActive(false);
+                    }
                     break;
                 }
             }
+            weatherString = PlayerPrefs.GetString("CurrentWeather");
+            GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().currentWeather = (Weather)Enum.Parse(typeof(Weather), weatherString, true);
+            GameObject.Find("TenkokuDynamicSky").GetComponent<WeatherController>().updateWeather();
         }
     }
 
